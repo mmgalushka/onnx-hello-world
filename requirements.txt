@@ -1,0 +1,7 @@
+ipykernel
+notebook
+numpy
+pandas
+scikit-learn
+skl2onnx
+onnxruntime
