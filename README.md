@@ -22,6 +22,24 @@ If you would like about ONNX please follow the following [link](https://github.c
 
 You might be asking the question: _why do we need this project if we already have excellent documentation [here](https://github.com/onnx/)_? I believe the best way to learn something new is to try-examples-yourself. So I tried to follow the existing documentation, repeat, and introduce some new steps. This way I tried to learn this technology and decided to share my experience with others.
 
+
+# Experiments
+
+## SKLearn Model
+
+To run experiments with the SKLearn models use [this](onnx_sklearn.ipynb) notebook. Using this notebook we conducted experiments with six SKLearn classifiers. The results of these experiments are presented in the following table.
+
+| Cassifier               | SKLearn | ONNX | Probabilities Difference            |
+| ----------------------- | ------- | ---- | ----------------------------------- |
+| K-nearest neighbors     | 81%     | 81%  | ![mlp diff image](exp/diff_knn.jpg) |
+| Logistic Regression     | 77%     | 77%  | ![mlp diff image](exp/diff_lr.jpg)  |
+| Random Forest           | 81%     | 81%  | ![mlp diff image](exp/diff_rf.jpg)  |
+| Support Vector          | 77%     | 77%  | ![mlp diff image](exp/diff_svm.jpg) |
+| Gaussian Naive Bay      | 75%     | 75%  | ![mlp diff image](exp/diff_nb.jpg)  |
+| Multi-layer Perceptron  | 77%     | 77%  | ![mlp diff image](exp/diff_mlp.jpg) |
+
+All of our tested classifiers were successfully converted to the ONNX format. The ONNX models produced the same accuracy results as the correspondent ONNX models. Very similar behavior according to the difference in prediction probability showed Logistic Regression, Support Vector, Gaussian Naive Bay, and Multi-layer Perceptron classifiers. K-nearest neighbors and Random Forest classifiers showed surprisingly large differences in prediction probabilities. This potentially may cause a prediction swing to other classes. 
+
 # Links
 
 * ONNX Official Website: https://onnx.ai/
