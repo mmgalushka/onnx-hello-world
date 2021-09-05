@@ -6,10 +6,17 @@
 
 !data/
 !data/**/
-!data/**/*.csv
+!data/**/*.zip
 
-# Except main notebooks
+# Experiments data
+
+!exp/
+!exp/**/
+!exp/**/*.jpg
+
+# Except main notebooks & Python code
 !*.ipynb
+!*.py
 
 # Except system files
 !helper.sh

@@ -1,8 +1,18 @@
+# Data Handling Packages
+numpy
+pandas
+
+# Machine Learning Packages
+scikit-learn
+xgboost
+
+# ONNX Support Packages
+skl2onnx
+onnxmltools
+onnxruntime
+
+# Jupyter Notebook & Visualization Packages
+pydot
 seaborn
 ipykernel
 notebook
-numpy
-pandas
-scikit-learn
-skl2onnx
-onnxruntime
