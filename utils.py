@@ -132,9 +132,13 @@ def create_preprocessor(dataset):
 
     # The data preprocessor combines numeric and categorical
     # column transformers.
-    preprocessor = ColumnTransformer(transformers=[
-        ('num', numeric_transformer, dataset.schema.numeric_features),
-        ('cat', categorical_transformer, dataset.schema.categorical_features)
-    ])
+    transformers = []
+    if len(dataset.schema.numeric_features) > 0:
+        transformers.append(('num', numeric_transformer,
+                            dataset.schema.numeric_features))
+    if len(dataset.schema.categorical_features) > 0:
+        transformers.append(('cat', categorical_transformer,
+                            dataset.schema.categorical_features))
+    preprocessor = ColumnTransformer(transformers=transformers)
 
     return preprocessor
