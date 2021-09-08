@@ -5,9 +5,11 @@ pandas
 # Machine Learning Packages
 scikit-learn
 xgboost
+tensorflow
 
 # ONNX Support Packages
 skl2onnx
+keras2onnx
 onnxmltools
 onnxruntime
 
