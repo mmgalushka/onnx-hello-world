@@ -4,7 +4,7 @@
 
 [![Project License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/mmgalushka/bootwrap/blob/main/LICENSE)
 
-his project provides educational material for using [Open Neural Network Exchange (ONNX)](https://onnx.ai/). These materials would be useful for data scientists and engineers who are planning to use the ONNX ML models in their AI projects. Using the prepared notebooks you will be to find answers to the following questions: 
+This project provides educational material for using [Open Neural Network Exchange (ONNX)](https://onnx.ai/). These materials would be useful for data scientists and engineers who are planning to use the ONNX ML models in their AI projects. Using the prepared notebooks you will be to find answers to the following questions: 
 * How I can convert my ML classification model built using [SKLearn](https://scikit-learn.org/stable/), [XGBoost](https://xgboost.readthedocs.io/en/latest/), and [Tensorflow (Keras)](https://www.tensorflow.org/) into the ONNX format? 
 * What is the difference between the original ML model and the model converted into the ONNX?
 * How I can visualize the ONNX graph?
@@ -42,13 +42,13 @@ All of our tested classifiers were successfully converted to the ONNX format. Th
 
 ## XGBoost Model
 
-To run this experiment use [onnx_sklearn.ipynb](onnx_sklearn.ipynb) notebook. This notebook uses the "iris" classification data set to build the [XGBoost](https://xgboost.readthedocs.io/en/latest/) model and then compares this model to its ONNX representation. The result of the conducted experiment is presented in the following table.
+To run this experiment use [onnx_xgboost.ipynb](onnx_xgboost.ipynb) notebook. This notebook uses the "iris" classification data set to build the [XGBoost](https://xgboost.readthedocs.io/en/latest/) model and then compares this model to its ONNX representation. The result of the conducted experiment is presented in the following table.
 
 | Cassifier               | Original | ONNX | Probabilities Difference                |
 | ----------------------- | -------- | ---- | --------------------------------------- |
 | XGBoost                 | 100%     | 100% | ![xgb diff image](exp/diff_xgboost.jpg) |
 
-Overall the process of working with the XGBoost classifier is very similar to the SKLearn model. You can easily observe this just by comparing both notebooks. The key difference is in performing  Registration for the XGBoost convertor:
+Overall the process of working with the XGBoost classifier is very similar to the SKLearn model. You can easily observe this just by comparing both notebooks. The key difference is in performing Registration for the XGBoost convertor:
 
 ```Python
 from xgboost import XGBClassifier
@@ -56,13 +56,39 @@ from skl2onnx import convert_sklearn, update_registered_converter
 from skl2onnx.common.shape_calculator import calculate_linear_classifier_output_shapes
 from onnxmltools.convert.xgboost.operator_converters.XGBoost import convert_xgboost
 
-
+...
 update_registered_converter(
     XGBClassifier, 'XGBoostXGBClassifier',
     calculate_linear_classifier_output_shapes, convert_xgboost,
     options={'nocl': [True, False], 'zipmap': [True, False, 'columns']})
 
 onnx_model = convert_sklearn(model, initial_types=...)    
+...
+```
+
+By observing experimental results, original and ONNX models have very similar behavior with **tiny** differences in prediction probability for outliers.
+
+## Tensorflow(Keras) Model
+
+To run this experiment use [onnx_tensorflow.ipynb](onnx_tensorflow.ipynb) notebook. This notebook uses the "adult" classification data set to build the [Tensorflow(Keras)](https://www.tensorflow.org/) model and then compares this model to its ONNX representation. The result of the conducted experiment is presented in the following table.
+
+| Cassifier               | Original | ONNX | Probabilities Difference                          |
+| ----------------------- | -------- | ---- | ------------------------------------------------- |
+| Tensorflow(Keras)       | 86%      | 86%  | ![tensorflow diff image](exp/diff_tensorflow.jpg) |
+
+A conversation of the Tensorflow(Keras) model into ONNX format is slightly different from [SKLearn](onnx_sklearn.ipynb) and [XGBoost](onnx_xgboost.ipynb). The main difference lies in preprocessing data. It must be done "manually" before feeding data to the classifier. For the actual model conversion, we tried to use [keras-onnx](https://github.com/onnx/keras-onnx) packages. Unfortunately, the result was unsuccessful. As a workaround, we save the original model in the file using Tensorflow format and convert it into the ONNX using [tf2onnx](https://github.com/onnx/tensorflow-onnx) package.
+
+```Python
+import tf2onnx.convert
+
+...
+model.save(
+    os.path.join('tmp', 'model.h5'),
+    overwrite=True, include_optimizer=False, save_format='tf'
+)
+...
+model = keras.models.load_model(os.path.join('tmp', 'model.h5'))
+onnx_model, _ = tf2onnx.convert.from_keras(model)
 ```
 
 By observing experimental results, original and ONNX models have very similar behavior with **tiny** differences in prediction probability for outliers.
