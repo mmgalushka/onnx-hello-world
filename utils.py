@@ -1,6 +1,9 @@
 import json
 import zipfile
 import pandas as pd
+import numpy as np
+
+from PIL import Image
 
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
@@ -21,6 +24,7 @@ class Schema:
         self.__numeric_features = []
         self.__categorical_features = []
         self.__target = None
+        self.__labels = None
 
         for idx, feature in enumerate(descriptor['features']):
             if idx == descriptor['target']:
@@ -31,6 +35,9 @@ class Schema:
                         self.__numeric_features.append(feature['name'])
                     elif feature['kind'] == 'categorical':
                         self.__categorical_features.append(feature['name'])
+
+        if 'labels' in descriptor:
+            self.__labels = descriptor['labels']
 
     @property
     def numeric_features(self):
@@ -48,9 +55,12 @@ class Schema:
     def target(self):
         return self.__target
 
+    @property
+    def labels(self):
+        return self.__labels
 
 class Dataset:
-    def __init__(self, schema, data):
+    def __init__(self, schema, data, labels=None):
         self.__schema = schema
         self.__data = data
 
@@ -85,13 +95,22 @@ class Dataset:
         return Dataset(self.schema, train), Dataset(self.schema, test)
 
 
-def load_dataset(name):
-    archive = zipfile.ZipFile(f'data/{name}.zip', 'r')
+def load_dataset(dataset_name):
+    archive = zipfile.ZipFile(f'data/{dataset_name}.zip', 'r')
     with archive.open('descriptor.json') as f:
         descriptor = json.load(f)
     with archive.open('data.csv') as f:
         data = pd.read_csv(f)
     return Dataset(Schema(descriptor), data)
+
+
+def load_image(dataset_name, image_name, size=None):
+    archive = zipfile.ZipFile(f'data/{dataset_name}.zip', 'r')
+    with archive.open(f'{image_name}.jpeg') as f:
+        image = Image.open(f)
+        if size is not None:
+            image = image.resize((224,224), Image.ANTIALIAS)
+        return np.asarray(image)
 
 
 def get_onnx_input_type(dataset, drop=None):
@@ -142,3 +161,5 @@ def create_preprocessor(dataset):
     preprocessor = ColumnTransformer(transformers=transformers)
 
     return preprocessor
+
+
