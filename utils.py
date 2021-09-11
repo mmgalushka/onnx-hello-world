@@ -59,6 +59,7 @@ class Schema:
     def labels(self):
         return self.__labels
 
+
 class Dataset:
     def __init__(self, schema, data, labels=None):
         self.__schema = schema
@@ -104,13 +105,17 @@ def load_dataset(dataset_name):
     return Dataset(Schema(descriptor), data)
 
 
-def load_image(dataset_name, image_name, size=None):
-    archive = zipfile.ZipFile(f'data/{dataset_name}.zip', 'r')
-    with archive.open(f'{image_name}.jpeg') as f:
-        image = Image.open(f)
-        if size is not None:
-            image = image.resize((224,224), Image.ANTIALIAS)
-        return np.asarray(image)
+def load_image(dataset_name, image_name):
+    with zipfile.ZipFile(f'data/{dataset_name}.zip', 'r') as a:
+        with a.open(f'{image_name}.jpeg', 'r') as f:
+            return Image.open(f).copy()
+
+# archive = zipfile.ZipFile(f'data/{dataset_name}.zip', 'r')
+# with archive.open(f'{image_name}.jpeg') as f:
+#     image = Image.open(f)
+#     if size is not None:
+#         image = image.resize((224,224), Image.ANTIALIAS)
+#     return np.asarray(image)
 
 
 def get_onnx_input_type(dataset, drop=None):
@@ -161,5 +166,3 @@ def create_preprocessor(dataset):
     preprocessor = ColumnTransformer(transformers=transformers)
 
     return preprocessor
-
-

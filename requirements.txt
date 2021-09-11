@@ -8,8 +8,8 @@ xgboost
 tensorflow
 
 # ONNX Support Packages
+tf2onnx
 skl2onnx
-keras2onnx
 onnxmltools
 onnxruntime
 
@@ -18,3 +18,4 @@ pydot
 seaborn
 ipykernel
 notebook
+opencv-python
