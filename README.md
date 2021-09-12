@@ -93,17 +93,27 @@ onnx_model, _ = tf2onnx.convert.from_keras(model)
 
 By observing experimental results, original and ONNX models have very similar behavior with **tiny** differences in prediction probability for outliers.
 
-## Use Pretrained ResNet ONNX Model
+## Use Pre-trained ResNet ONNX Model
 
 | Animal      | Original Image                       | Preprocessed Image                   | Label              | Score |
 | ----------- | ------------------------------------ | ------------------------------------ | ------------------ | ----- |
-| cat-1       | ![orig cat 1](exp/resnet_orig_cat_1.jpg) | ![prep cat 1](exp/resnet_prep_cat_1.jpg) | "tabby, tabby cat" | 12.97 |
-| cat-2       | ![orig cat 2](exp/resnet_orig_cat_2.jpg) | ![prep cat 2](exp/resnet_prep_cat_2.jpg) | "tabby, tabby cat" | 7.93  |
-| cat-3       | ![orig cat 3](exp/resnet_orig_cat_3.jpg) | ![prep cat 3](exp/resnet_prep_cat_3.jpg) | "Egyptian cat"     | 8.87  |
-| dog-1       | ![orig dog 1](exp/resnet_orig_dog_1.jpg) | ![prep dog 1](exp/resnet_prep_dog_1.jpg) | "Labrador retriever" | 14.60  |
-| dog-2       | ![orig dog 2](exp/resnet_orig_dog_2.jpg) | ![prep dog 2](exp/resnet_prep_dog_2.jpg) | "Bernese mountain dog" | 13.96   |
-| dog-3       | ![orig dog 3](exp/resnet_orig_dog_3.jpg) | ![prep dog 3](exp/resnet_prep_dog_3.jpg) | "Eskimo dog, husky"     | 11.79   |
+| cat-1       | ![resnet orig cat 1](exp/resnet_orig_cat_1.jpg) | ![resnet prep cat 1](exp/resnet_prep_cat_1.jpg) | "tabby, tabby cat" | 12.97 |
+| cat-2       | ![resnet orig cat 2](exp/resnet_orig_cat_2.jpg) | ![resnet prep cat 2](exp/resnet_prep_cat_2.jpg) | "tabby, tabby cat" | 7.93  |
+| cat-3       | ![resnet orig cat 3](exp/resnet_orig_cat_3.jpg) | ![resnet prep cat 3](exp/resnet_prep_cat_3.jpg) | "Egyptian cat"     | 8.87  |
+| dog-1       | ![resnet orig dog 1](exp/resnet_orig_dog_1.jpg) | ![resnet prep dog 1](exp/resnet_prep_dog_1.jpg) | "Labrador retriever" | 14.60  |
+| dog-2       | ![resnet orig dog 2](exp/resnet_orig_dog_2.jpg) | ![resnet prep dog 2](exp/resnet_prep_dog_2.jpg) | "Bernese mountain dog" | 13.96   |
+| dog-3       | ![resnet orig dog 3](exp/resnet_orig_dog_3.jpg) | ![resnet prep dog 3](exp/resnet_prep_dog_3.jpg) | "Eskimo dog, husky"     | 11.79   |
 
+
+## Use Pre-trained MaskRCNN ONNX Model
+
+| Animal      | Original Image                                                | Preprocessed Image                                            |
+| ----------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| cat-1       | ![maskrcnn orig cat 1](exp/maskrcnn_orig_cat_1.jpg)           | ![maskrcnn res cat 1](exp/maskrcnn_res_cat_1.jpg)           |
+| dog-1       | ![maskrcnn orig cat 1](exp/maskrcnn_orig_dog_1.jpg)           | ![maskrcnn res cat 1](exp/maskrcnn_res_dog_1.jpg)           |
+| cat-n       | ![maskrcnn orig cat 1](exp/maskrcnn_orig_cat_n.jpg)           | ![maskrcnn res cat 1](exp/maskrcnn_res_cat_n.jpg)           |
+| dog-n       | ![maskrcnn orig cat 1](exp/maskrcnn_orig_dog_n.jpg)           | ![maskrcnn res cat 1](exp/maskrcnn_res_dog_n.jpg)           |
+| dog-n-cat   | ![maskrcnn orig dog & cat 1](exp/maskrcnn_orig_dog_n_cat.jpg) | ![maskrcnn res dog & cat 1](exp/maskrcnn_res_dog_n_cat.jpg) |
 
 # Links
 
