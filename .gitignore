@@ -13,6 +13,7 @@
 !exp/
 !exp/**/
 !exp/**/*.jpg
+!exp/**/*.md
 
 # Except main notebooks & Python code
 !*.ipynb
