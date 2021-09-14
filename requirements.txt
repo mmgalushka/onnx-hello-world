@@ -1,6 +1,7 @@
 # Data Handling Packages
 numpy
 pandas
+nltk
 
 # Machine Learning Packages
 scikit-learn
