@@ -57,7 +57,7 @@ y_pred, y_probas = sess.run(None, <your data>)
 
 If you would like about ONNX please follow the following [link](https://github.com/onnx/).
 
-## What this 'ONNX Hello World' project?
+## Why do we need this 'ONNX Hello World' project?
 
 You might be asking the question: _why do we need this project if we already have excellent documentation [here](https://github.com/onnx/)_? I believe the best way to learn something new is to try-examples-yourself. So I tried to follow the existing documentation, repeat, and introduce some new steps. This way I tried to learn this technology and share my experience with others.
 
@@ -74,6 +74,18 @@ This project includes the following studies (each study is a notebook exploring 
 | [MaskRCNN](exp/maskrcnn.md)            | [onnx_maskrcnn.ipynb](onnx_maskrcnn.ipynb) | CV | Inference using MaskRCNN (instant segmentation) ONNX |
 | [SSD](exp/ssd.md)                  | [onnx_ssd.ipynb](onnx_ssd.ipynb) | CV | Inference using SSD (objects detection) ONNX |
 | [BiDAF](exp/bidaf.md)                  | [onnx_bidaf.ipynb](onnx_bidaf.ipynb) | NLP | Inference using BiDAF (Query/Answer) ONNX |
+
+## ONNX Usage Pattern
+
+By looking into the GitHub repositories for different ONNX models we can observe a common pattern. The process of loading and queries the model is the same for the majority of models. but processes for preparing queries and interpreting results are different. To simplify the usage of the published ONNX model, the majority of authors provide the following functions **preprocess** and **postprocess**:
+
+* the **preprocess** function takes your raw data and transforms it into the input format (usually NumPy-array) used by the ML model.
+* the **postprocessing** function takes the model output and transforms it into the format suitable for the end-user interpretation (for example an image with objects detected rectangles).
+
+There is one interesting observation from reading the ONNX documentation for different ML models. Some authors define the input such as "_The model has 3 outputs. boxes: (1x'nbox'x4) labels: (1x'nbox') scores: (1x'nbox')_". It is not always clear, for example, what values are inside the binding box "_(1x'nbox'x4)_": (x1, y1, x2, y2) or (xc, yc, w, h), etc. If the **postprocess** function is not defined, it might take a while to understand the meaning of some outputs.
+
+Moving forward it would be nice if the ONNX community adopt something like [Google Model Cards](https://modelcards.withgoogle.com/about), to provide all information relevant to the model itself and its usage.
+
 
 ## Links
 
