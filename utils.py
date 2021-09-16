@@ -1,3 +1,4 @@
+import os
 import json
 import zipfile
 import pandas as pd
@@ -17,6 +18,8 @@ from skl2onnx.common.data_types import (
     DoubleTensorType,
     StringTensorType
 )
+
+from matplotlib import pyplot as plt
 
 
 class Schema:
@@ -110,12 +113,31 @@ def load_image(dataset_name, image_name):
         with a.open(f'{image_name}.jpeg', 'r') as f:
             return Image.open(f).copy()
 
-# archive = zipfile.ZipFile(f'data/{dataset_name}.zip', 'r')
-# with archive.open(f'{image_name}.jpeg') as f:
-#     image = Image.open(f)
-#     if size is not None:
-#         image = image.resize((224,224), Image.ANTIALIAS)
-#     return np.asarray(image)
+
+def show_image(image, model_name, image_category, image_name, dataset_name):
+    _, ax = plt.subplots()
+    plt.imshow(image, interpolation='nearest')
+
+    if image_category == 'orig':
+        image_label = 'original'
+    elif image_category == 'pre':
+        image_label = 'preprocessed'
+    elif image_category == 'post':
+        image_label = 'postprocessed'
+    else:
+        image_label = ''
+
+    ax.set_title(
+        f'The {image_label} image of "{image_name}" from\nthe "{dataset_name}" dataset'
+    )
+
+    if image_category == 'orig':
+        filename = f'{image_category}_{image_name.replace("-","_")}.jpg'
+    else:
+        filename = f'{model_name.lower()}_{image_category}_{image_name.replace("-","_")}.jpg'
+
+    plt.savefig(os.path.join('tmp', filename))
+    plt.show()
 
 
 def get_onnx_input_type(dataset, drop=None):
