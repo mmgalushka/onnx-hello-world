@@ -1,6 +1,6 @@
 # Experiment with Tensorflow(Keras) Model
 
-To run experiments with the [Tensorflow(Keras)](https://www.tensorflow.org/) model use [onnx_tensorflow.ipynb](onnx_tensorflow.ipynb) notebook. Using this notebook we conducted experiments with the Tensorflow(Keras) classifier.
+To run experiments with the [Tensorflow(Keras)](https://www.tensorflow.org/) classifier use [onnx_tensorflow.ipynb](onnx_tensorflow.ipynb) notebook.
 
 ## Dataset
 
@@ -26,6 +26,45 @@ For performing experiments, we will be using the "adult" classification data set
 
 The "Income" field defines two income categories: **<=50K** and **>50K**.
 
+## Model Conversion
+
+A conversation of the Tensorflow(Keras) model into ONNX format is slightly different from [SKLearn](onnx_sklearn.ipynb) and [XGBoost](onnx_xgboost.ipynb). The main difference lies in preprocessing data. It must be done "manually" before feeding data to the classifier. For the actual model conversion, we tried to use [keras-onnx](https://github.com/onnx/keras-onnx) packages. Unfortunately, the result was unsuccessful. As a workaround, we save the original model in the file using Tensorflow format and convert it into the ONNX using [tf2onnx](https://github.com/onnx/tensorflow-onnx) package.
+
+The process of converting the Tensorflow(Keras) model to ONNX is performed by the **tf2onnx.convert.from_keras** function:
+
+```Python
+import tf2onnx.convert
+
+# Trains a custom model.
+my_model = ...
+
+# Creates input type using dataset schema.
+initial_type = ...
+
+# Converts the model to the ONNX format.
+onnx_model, _ = tf2onnx.convert.from_keras(my_model)
+```
+
+To use **tf2onnx.convert.from_keras** function you need to install the [tf2onnx package](https://pypi.org/project/tf2onnx/):
+
+```Bash
+~$ pip install tf2onnx
+```
+
+One important remark. The converted model must be in the Tensorflow graph (not Keras). To obtain the correct model representation, serialize it and reload as following:
+
+```Python
+...
+# Save the model using TF format.
+my_model.save(
+    'model.h5',overwrite=True, include_optimizer=False, save_format='tf'
+)
+# Load the model using TF format.
+my_model = keras.models.load_model('model.h5')
+```
+
+Make sure that you are using this argument `save_format='tf'`
+
 ## Models Comparison Results
 
 The results of conducted experiments are presented in the following table.
@@ -35,20 +74,5 @@ The results of conducted experiments are presented in the following table.
 | Tensorflow(Keras)       | 86%      | 86%  | ![diff_tensorflow](images/diff_tensorflow.jpg)    |
 
 ## Summary
-
-A conversation of the Tensorflow(Keras) model into ONNX format is slightly different from [SKLearn](onnx_sklearn.ipynb) and [XGBoost](onnx_xgboost.ipynb). The main difference lies in preprocessing data. It must be done "manually" before feeding data to the classifier. For the actual model conversion, we tried to use [keras-onnx](https://github.com/onnx/keras-onnx) packages. Unfortunately, the result was unsuccessful. As a workaround, we save the original model in the file using Tensorflow format and convert it into the ONNX using [tf2onnx](https://github.com/onnx/tensorflow-onnx) package.
-
-```Python
-import tf2onnx.convert
-
-...
-model.save(
-    os.path.join('tmp', 'model.h5'),
-    overwrite=True, include_optimizer=False, save_format='tf'
-)
-...
-model = keras.models.load_model(os.path.join('tmp', 'model.h5'))
-onnx_model, _ = tf2onnx.convert.from_keras(model)
-```
 
 By observing experimental results, original and ONNX models have very similar behavior with **tiny** differences in prediction probability for outliers.

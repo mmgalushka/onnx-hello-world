@@ -1,6 +1,6 @@
 # Experiment with XGBoost Model
 
-To run experiments with the [XGBoost](https://xgboost.readthedocs.io/en/latest/) model use [onnx_xgboost.ipynb](../onnx_xgboost.ipynb) notebook. Using this notebook we conducted experiments with the XGBoost classifier.
+To run experiments with the [XGBoost](https://xgboost.readthedocs.io/en/latest/) classifier use [onnx_xgboost.ipynb](../onnx_xgboost.ipynb) notebook.
 
 ## Dataset
 
@@ -16,17 +16,9 @@ For performing experiments, we will be using the "iris" classification data set.
 
 The "class" field defines three species of Iris (Iris **setosa**, Iris **virginica** and Iris **versicolor**).
 
-## Models Comparison Results
+## Model Conversion
 
-The results of conducted experiments are presented in the following table.
-
-| Cassifier               | Original | ONNX | Probabilities Difference                 |
-| ----------------------- | -------- | ---- | ---------------------------------------- |
-| XGBoost                 | 100%     | 100% | ![diff_xgboost](images/diff_xgboost.jpg) |
-
-## Summary
-
-Overall the process of working with the XGBoost classifier is very similar to the SKLearn model. You can easily observe this just by comparing both notebooks. The key difference is in performing Registration for the XGBoost convertor:
+Overall the process of working with the XGBoost classifier is very similar to the SKLearn model. The key difference is in performing Registration for the XGBoost converter:
 
 ```Python
 from xgboost import XGBClassifier
@@ -40,8 +32,32 @@ update_registered_converter(
     calculate_linear_classifier_output_shapes, convert_xgboost,
     options={'nocl': [True, False], 'zipmap': [True, False, 'columns']})
 
-onnx_model = convert_sklearn(model, initial_types=...)    
-...
+
+# Trains a custom model.
+my_model = ...
+
+# Creates input type using dataset schema.
+initial_type = ...
+
+# Converts the model to the ONNX format.
+onnx_model = convert_sklearn(my_model, initial_types=initial_type) 
 ```
+
+To use **convert_sklearn** function you need to install the [skl2onnx package](https://pypi.org/project/skl2onnx/) together with [onnxmltools](https://pypi.org/project/onnxmltools/):
+
+```Bash
+~$ pip install skl2onnx
+~$ pip install onnxmltools
+```
+
+## Models Comparison Results
+
+The results of conducted experiments are presented in the following table.
+
+| Cassifier               | Original | ONNX | Probabilities Difference                 |
+| ----------------------- | -------- | ---- | ---------------------------------------- |
+| XGBoost                 | 100%     | 100% | ![diff_xgboost](images/diff_xgboost.jpg) |
+
+## Summary
 
 By observing experimental results, original and ONNX models have very similar behavior with **tiny** differences in prediction probability for outliers.

@@ -4,9 +4,9 @@
 
 [![Project License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/mmgalushka/bootwrap/blob/main/LICENSE)
 
-This project provides educational material for [Open Neural Network Exchange (ONNX)](https://onnx.ai/). These materials would be useful for data scientists and engineers who are planning to use the ONNX models in their AI projects. Notebooks will help you to find answers to the following questions: 
+This project provides educational material for [Open Neural Network Exchange (ONNX)](https://onnx.ai/). These materials would be useful for data scientists and engineers who are planning to use the ONNX models in their AI projects. Notebooks will help you to find answers to the following questions:
 
-* How to convert [SKLearn](https://scikit-learn.org/stable/), [XGBoost](https://xgboost.readthedocs.io/en/latest/), and [Tensorflow (Keras)](https://www.tensorflow.org/) classifiers into the ONNX format? 
+* How to convert [SKLearn](https://scikit-learn.org/stable/), [XGBoost](https://xgboost.readthedocs.io/en/latest/), and [Tensorflow (Keras)](https://www.tensorflow.org/) classifiers into the ONNX format?
 * What is the difference between the original  SKLearn, XGBoost, and Tensorflow (Keras) models and their ONNX representation?
 * Where to find and how to use already trained and serialized ONNX models?
 * How to visualize the ONNX graph?
@@ -87,10 +87,11 @@ There is one interesting observation from reading the ONNX documentation for dif
 
 Moving forward it would be nice if the ONNX community adopt something like [Google Model Cards](https://modelcards.withgoogle.com/about), to provide all information relevant to the model itself and its usage.
 
-
 ## Links
 
 * [ONNX Official Website](https://onnx.ai/)
 * [ONNX GitHub](https://github.com/onnx)
 * [Experimental Notebooks](https://github.com/mmgalushka/onnx-hello-world)
 * [Issue Tracker](https://github.com/mmgalushka/onnx-hello-world/issues)
+* [skl2onnx package](https://pypi.org/project/skl2onnx/)
+* [onnxmltools package](https://pypi.org/project/onnxmltools/)

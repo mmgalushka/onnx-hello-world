@@ -18,6 +18,31 @@ The "Survived" field defines a passenger survived status (**0**-not survived and
 
 This combination of features is useful for testing the data preprocessing pipeline.
 
+## Model Conversion
+
+The process of converting the SKLearn model to ONNX is relatively straightforward, you need to call function **convert_sklearn** and specify your custom model.
+
+```Python
+from skl2onnx import convert_sklearn
+
+# Trains a custom model.
+my_model = ...
+
+# Creates input type using dataset schema.
+initial_type = ...
+
+# Converts the model to the ONNX format.
+onnx_model = convert_sklearn(my_model, initial_types=initial_type)
+```
+
+To use **convert_sklearn** function you need to install the [skl2onnx package](https://pypi.org/project/skl2onnx/):
+
+```Bash
+~$ pip install skl2onnx
+```
+
+There are not all SKLearn components are available for conversion. To check which SKLearn components are supported, please use the following [link](https://onnx.ai/sklearn-onnx/supported.html).
+
 ## Models Comparison Results
 
 The results of conducted experiments are presented in the following table.
@@ -33,4 +58,4 @@ The results of conducted experiments are presented in the following table.
 
 ## Summary
 
-All of our tested classifiers were successfully converted to the ONNX format. The ONNX models produced the same accuracy results as the correspondent SKLearn models. Very similar behavior (according to the difference in prediction probability) showed Logistic Regression, Support Vector, Gaussian Naive Bay, and Multi-layer Perceptron classifiers. K-nearest neighbors and Random Forest classifiers showed surprisingly large differences in prediction probabilities for some samples. This potentially may cause a prediction swing to other classes.
+All tested classifiers were successfully converted to the ONNX format. The ONNX models produced the same accuracy results as the correspondent SKLearn models. Very similar behavior (according to the difference in prediction probability) showed Logistic Regression, Support Vector, Gaussian Naive Bay, and Multi-layer Perceptron classifiers. K-nearest neighbors and Random Forest classifiers showed surprisingly large differences in prediction probabilities for some samples. This potentially may cause a prediction swing to other classes.
