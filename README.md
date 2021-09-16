@@ -71,7 +71,7 @@ This project includes the following studies (each study is a notebook exploring 
 | [SKLearn](exp/sklearn.md)              | [onnx_sklearm.ipynb](onnx_sklearm.ipynb) | Tabular | SKLearn models training, conversion, and comparing to ONNX |
 | [XGBoost](exp/xgboost.md)              | [onnx_xgboost.ipynb](onnx_xgboost.ipynb) | Tabular | XGBoost model training, conversion, and comparing to ONNX |
 | [Tensorflow(Keras)](exp/tensorflow.md) | [onnx_tensorflow.ipynb](onnx_tensorflow.ipynb) | Tabular | Tensorflow(Keras) model training, conversion, and comparing to ONNX |
-| [Resnet](exp/tensorflow.md)            | [onnx_resnet.ipynb](onnx_resnet.ipynb) | CV | Inference using ResNet (image classification) ONNX  |
+| [Resnet](exp/resnet.md)            | [onnx_resnet.ipynb](onnx_resnet.ipynb) | CV | Inference using ResNet (image classification) ONNX  |
 | [MaskRCNN](exp/maskrcnn.md)            | [onnx_maskrcnn.ipynb](onnx_maskrcnn.ipynb) | CV | Inference using MaskRCNN (instant segmentation) ONNX |
 | [SSD](exp/ssd.md)                  | [onnx_ssd.ipynb](onnx_ssd.ipynb) | CV | Inference using SSD (objects detection) ONNX |
 | [BiDAF](exp/bidaf.md)                  | [onnx_bidaf.ipynb](onnx_bidaf.ipynb) | NLP | Inference using BiDAF (Query/Answer) ONNX |
