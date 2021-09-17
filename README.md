@@ -13,6 +13,31 @@ This project provides educational material for [Open Neural Network Exchange (ON
 
 **Note:** These notebooks are not about data cleaning, feature selection, model optimization, etc. These notebooks are about exploring different aspects of using ONNX models! :point_up:
 
+## Why do we need this 'ONNX Hello World' project?
+
+You might be asking the question: _why do we need this project if we already have excellent documentation [here](https://github.com/onnx/)_? I believe the best way to learn something new is to try-examples-yourself. So I tried to follow the existing documentation, repeat, and introduce some new steps. This way I tried to learn this technology and share my experience with others.
+
+## How to use this tutorial?
+
+1. Clone this project:
+    ```Bash
+    ~$ git clone https://github.com/mmgalushka/onnx-hello-world.git
+    ```
+2. Initialize the virtual environment:
+    ```Bash
+    ~$ cd onnx-hello-world
+    ~$ ./helper.sh init
+    ```
+3. Open the project in [VS Code](https://code.visualstudio.com/):
+    ```Bash
+    ~$ code .
+    ```
+
+**Note:** To work with this project you can use any other Python environment. If you decided to use the recommended VS Code make sure you install the following extensions:
+
+* https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter
+* https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter-keymap
+
 ## What is ONNX?
 
 Let's cite a quote defining the goal of the [ONNX project](https://onnx.ai/about.html):
@@ -57,10 +82,6 @@ y_pred, y_probas = sess.run(None, <your data>)
 ```
 
 This example shows how to use the SKLearn model convertor. But a similar approach applies to other frameworks. If you would like about ONNX please follow the following [link](https://github.com/onnx/).
-
-## Why do we need this 'ONNX Hello World' project?
-
-You might be asking the question: _why do we need this project if we already have excellent documentation [here](https://github.com/onnx/)_? I believe the best way to learn something new is to try-examples-yourself. So I tried to follow the existing documentation, repeat, and introduce some new steps. This way I tried to learn this technology and share my experience with others.
 
 ## Experiments
 
