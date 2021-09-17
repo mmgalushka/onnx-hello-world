@@ -27,7 +27,6 @@ class Schema:
         self.__numeric_features = []
         self.__categorical_features = []
         self.__target = None
-        self.__labels = None
 
         for idx, feature in enumerate(descriptor['features']):
             if idx == descriptor['target']:
@@ -38,9 +37,6 @@ class Schema:
                         self.__numeric_features.append(feature['name'])
                     elif feature['kind'] == 'categorical':
                         self.__categorical_features.append(feature['name'])
-
-        if 'labels' in descriptor:
-            self.__labels = descriptor['labels']
 
     @property
     def numeric_features(self):
@@ -57,10 +53,6 @@ class Schema:
     @property
     def target(self):
         return self.__target
-
-    @property
-    def labels(self):
-        return self.__labels
 
 
 class Dataset:

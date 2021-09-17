@@ -2,6 +2,12 @@
 
 *
 
+# Except config
+
+!config/
+!config/**/
+!config/**/*.txt
+
 # Except data
 
 !data/
