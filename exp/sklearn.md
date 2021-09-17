@@ -56,6 +56,18 @@ The results of conducted experiments are presented in the following table.
 | Gaussian Naive Bayes    | 75%      | 75%  | ![diff_nb](images/diff_nb.jpg)      |
 | Multi-layer Perceptron  | 77%      | 77%  | ![diff_mlp](images/diff_mlp.jpg)    |
 
+## ONNX Model Graphs
+
+To generate SKLearm ONNX model graphs use the [onnx_graph.onnx](../onnx_graph.onnx) notebook. The red line (drawn manually) on the graph images shows the separation between the features transformation and classifier parts.
+
+### K-nearest neighbors Classifier
+
+![sklearn_knn_graph](images/sklearn_knn_graph.png)
+
+### Random Forest Classifier
+
+![sklearn_rf_graph](images/sklearn_rf_graph.png)
+
 ## Summary
 
 All tested classifiers were successfully converted to the ONNX format. The ONNX models produced the same accuracy results as the correspondent SKLearn models. Very similar behavior (according to the difference in prediction probability) showed Logistic Regression, Support Vector, Gaussian Naive Bay, and Multi-layer Perceptron classifiers. K-nearest neighbors and Random Forest classifiers showed surprisingly large differences in prediction probabilities for some samples. This potentially may cause a prediction swing to other classes.

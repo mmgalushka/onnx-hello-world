@@ -87,6 +87,14 @@ There is one interesting observation from reading the ONNX documentation for dif
 
 Moving forward it would be nice if the ONNX community adopt something like [Google Model Cards](https://modelcards.withgoogle.com/about), to provide all information relevant to the model itself and its usage.
 
+## ONNX Model To Graph
+
+As a part of this study, we were able to convert [SKLearn](exp/sklearn.md), [XGBoost](exp/xgboost.md), and [Tensorflow](exp/tensorflow.md) models to graphs using [this notebook](onnx_graph.ipynb). We also made the attempt to convert much bigger models such as ResNet, MaskRCNN, etc. Unfortunately for the larger models, the graph computation took a huge amount of time, so this process was manually interrupted for all attempts.
+
+Information-wise these graphs might be useful during the development and debugging phase. However, it could be quite challenging for external users to understand how the specific model works. Even more challenging this could be for the non-deep learning model. For example, an entire ML logic for the Random Forest model has been packaged into the "TreeEnsampleClassifier" node.
+
+For Tensorflow(Keras) it might better use the native visualization tools. The ONNX graph even for the relatively simple Model that consisted of few Dense layers looks rather clouded compare to the native Keras visualization.
+
 ## Links
 
 * [ONNX Official Website](https://onnx.ai/)

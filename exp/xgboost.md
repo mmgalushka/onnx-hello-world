@@ -58,6 +58,12 @@ The results of conducted experiments are presented in the following table.
 | ----------------------- | -------- | ---- | ---------------------------------------- |
 | XGBoost                 | 100%     | 100% | ![diff_xgboost](images/diff_xgboost.jpg) |
 
+## ONNX Model Graphs
+
+To generate the XGBoost ONNX model graph use the [onnx_graph.onnx](../onnx_graph.onnx) notebook. The red line (drawn manually) on the graph image shows the separation between the features transformation and XGBoost classifier parts.
+
+![xgboost_graph](images/xgboost_graph.png)
+
 ## Summary
 
 By observing experimental results, original and ONNX models have very similar behavior with **tiny** differences in prediction probability for outliers.

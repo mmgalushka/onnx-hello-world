@@ -73,6 +73,12 @@ The results of conducted experiments are presented in the following table.
 | ----------------------- | -------- | ---- | ------------------------------------------------- |
 | Tensorflow(Keras)       | 86%      | 86%  | ![diff_tensorflow](images/diff_tensorflow.jpg)    |
 
+## ONNX Model Graphs
+
+To generate the Tensorflow ONNX model graph use the [onnx_graph.onnx](../onnx_graph.onnx) notebook. Please note, that we were using the red line (drawn manually) on the [SKLearn](sklearn.md) and [XGBoost](xgboost.md) graph images to show the separation between the features transformation and classifier parts. For the Tensorflow model, we perform transformation before fitting the model, because of this our graph does not have the transformation part.
+
+![tensorflow_graph](images/tensorflow_graph.png)
+
 ## Summary
 
 By observing experimental results, original and ONNX models have very similar behavior with **tiny** differences in prediction probability for outliers.

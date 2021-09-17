@@ -12,7 +12,8 @@
 
 !exp/
 !exp/**/
-!exp/**/*.jpg
+!exp/images/**/*.jpg
+!exp/images/**/*.png
 !exp/**/*.md
 
 # Except main notebooks & Python code
