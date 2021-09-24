@@ -31,7 +31,8 @@ action_usage(){
     echo -e "                                 Quote from: https://onnx.ai/ "
 
     echo -e "${BOLD}System Commands:${NC}"
-    echo -e "   ${CMD}init${NC} initializers environment;" 
+    echo -e "   ${CMD}init${NC} initializers environment;"
+    echo -e "   ${CMD}netron <ONNX FILE>${NC} launches model browser;" 
 }
 
 action_init(){
@@ -47,12 +48,20 @@ action_init(){
     pip3 install -r requirements.txt
 }
 
+action_netron(){
+    source .venv/bin/activate
+    netron -b ${@}
+}
+
 # =============================================================================
 # HELPER COMMANDS SELECTOR
 # =============================================================================
 case $1 in
     init)
         action_init
+    ;;
+    netron)
+        action_netron ${@:2}
     ;;
     *)
         action_usage

@@ -75,9 +75,23 @@ The results of conducted experiments are presented in the following table.
 
 ## ONNX Model Graphs
 
+### Using Jupyter Notebook
+
 To generate the Tensorflow ONNX model graph use the [onnx_graph.onnx](../onnx_graph.onnx) notebook. Please note, that we were using the red line (drawn manually) on the [SKLearn](sklearn.md) and [XGBoost](xgboost.md) graph images to show the separation between the features transformation and classifier parts. For the Tensorflow model, we perform transformation before fitting the model, because of this our graph does not have the transformation part.
 
 ![tensorflow_graph](images/tensorflow_graph.png)
+
+### Using Netron Tool
+
+To visualize the ONNX model using the Netron tool use the following command:
+
+```Bash
+~$ ./helper.sh netron tmp/model.onnx
+```
+
+:point_up: Make sure that you correctly defined a path to the ONNX model file.
+
+![tensorflow_netron](images/tensorflow_netron.png)
 
 ## Summary
 
