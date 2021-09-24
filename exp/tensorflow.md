@@ -1,6 +1,6 @@
 # Experiment with Tensorflow(Keras) Model
 
-To run experiments with the [Tensorflow(Keras)](https://www.tensorflow.org/) classifier use [onnx_tensorflow.ipynb](onnx_tensorflow.ipynb) notebook.
+To run experiments with the [Tensorflow(Keras)](https://www.tensorflow.org/) classifier use [onnx_tensorflow.ipynb](../onnx_tensorflow.ipynb) notebook.
 
 ## Dataset
 
@@ -28,7 +28,7 @@ The "Income" field defines two income categories: **<=50K** and **>50K**.
 
 ## Model Conversion
 
-A conversation of the Tensorflow(Keras) model into ONNX format is slightly different from [SKLearn](onnx_sklearn.ipynb) and [XGBoost](onnx_xgboost.ipynb). The main difference lies in preprocessing data. It must be done "manually" before feeding data to the classifier. For the actual model conversion, we tried to use [keras-onnx](https://github.com/onnx/keras-onnx) packages. Unfortunately, the result was unsuccessful. As a workaround, we save the original model in the file using Tensorflow format and convert it into the ONNX using [tf2onnx](https://github.com/onnx/tensorflow-onnx) package.
+A conversation of the Tensorflow(Keras) model into ONNX format is slightly different from [SKLearn](../onnx_sklearn.ipynb) and [XGBoost](../onnx_xgboost.ipynb). The main difference lies in preprocessing data. It must be done "manually" before feeding data to the classifier. For the actual model conversion, we tried to use [keras-onnx](https://github.com/onnx/keras-onnx) packages. Unfortunately, the result was unsuccessful. As a workaround, we save the original model in the file using Tensorflow format and convert it into the ONNX using [tf2onnx](https://github.com/onnx/tensorflow-onnx) package.
 
 The process of converting the Tensorflow(Keras) model to ONNX is performed by the **tf2onnx.convert.from_keras** function:
 
