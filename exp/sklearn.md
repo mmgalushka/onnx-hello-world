@@ -58,15 +58,35 @@ The results of conducted experiments are presented in the following table.
 
 ## ONNX Model Graphs
 
+### Using Jupyter Notebook
+
 To generate SKLearm ONNX model graphs use the [onnx_graph.onnx](../onnx_graph.onnx) notebook. The red line (drawn manually) on the graph images shows the separation between the features transformation and classifier parts.
 
-### K-nearest neighbors Classifier
+**K-nearest neighbors Classifier**
 
 ![sklearn_knn_graph](images/sklearn_knn_graph.png)
 
-### Random Forest Classifier
+**Random Forest Classifier**
 
 ![sklearn_rf_graph](images/sklearn_rf_graph.png)
+
+### Using Netron Tool
+
+To visualize the ONNX model using the Netron tool use the following command:
+
+```Bash
+~$ ./helper.sh netron tmp/model.onnx
+```
+
+:point_up: Make sure that you correctly defined a path to the ONNX model file.
+
+**K-nearest neighbors Classifier**
+
+![sklearn_knn_netron](images/sklearn_knn_netron.png)
+
+**Random Forest Classifier**
+
+![sklearn_rf_netron](images/sklearn_rf_netron.png)
 
 ## Summary
 

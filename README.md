@@ -20,23 +20,28 @@ You might be asking the question: _why do we need this project if we already hav
 ## How to use this tutorial?
 
 1. Clone this project:
+
     ```Bash
     ~$ git clone https://github.com/mmgalushka/onnx-hello-world.git
     ```
+
 2. Initialize the virtual environment:
+
     ```Bash
     ~$ cd onnx-hello-world
     ~$ ./helper.sh init
     ```
+
 3. Open the project in [VS Code](https://code.visualstudio.com/):
+
     ```Bash
     ~$ code .
     ```
 
 **Note:** To work with this project you can use any other Python environment. If you decided to use the recommended VS Code make sure you install the following extensions:
 
-* https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter
-* https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter-keymap
+* [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+* [Jupyter-keymap](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter-keymap)
 
 ## What is ONNX?
 
@@ -116,11 +121,27 @@ Information-wise these graphs might be useful during the development and debuggi
 
 For Tensorflow(Keras) it might better use the native visualization tools. The ONNX graph even for the relatively simple Model that consisted of few Dense layers looks rather clouded compare to the native Keras visualization.
 
+Another very good tool for visualizing the ONNX model is the [Netron](https://github.com/lutzroeder/netron). You cat try this tool online [here](https://netron.app/). If you want to visualize your ONNX model with the Netron inside this project, use the following command:
+
+```Bash
+~$ ./helper.sh netron <path to your ONNX model>
+```
+
 ## Links
+
+### General
 
 * [ONNX Official Website](https://onnx.ai/)
 * [ONNX GitHub](https://github.com/onnx)
 * [Experimental Notebooks](https://github.com/mmgalushka/onnx-hello-world)
 * [Issue Tracker](https://github.com/mmgalushka/onnx-hello-world/issues)
+
+### Packages
+
 * [skl2onnx package](https://pypi.org/project/skl2onnx/)
 * [onnxmltools package](https://pypi.org/project/onnxmltools/)
+
+### Visualizers
+
+* [Netron GitHub](https://github.com/lutzroeder/netron)
+* [Netron Application](https://netron.app/)

@@ -60,9 +60,23 @@ The results of conducted experiments are presented in the following table.
 
 ## ONNX Model Graphs
 
+### Using Jupyter Notebook
+
 To generate the XGBoost ONNX model graph use the [onnx_graph.onnx](../onnx_graph.onnx) notebook. The red line (drawn manually) on the graph image shows the separation between the features transformation and XGBoost classifier parts.
 
 ![xgboost_graph](images/xgboost_graph.png)
+
+### Using Netron Tool
+
+To visualize the ONNX model using the Netron tool use the following command:
+
+```Bash
+~$ ./helper.sh netron tmp/model.onnx
+```
+
+:point_up: Make sure that you correctly defined a path to the ONNX model file.
+
+![xgboost_netron](images/xgboost_netron.png)
 
 ## Summary
 

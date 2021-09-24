@@ -15,6 +15,7 @@ onnxmltools
 onnxruntime
 
 # Jupyter Notebook & Visualization Packages
+netron
 pydot
 seaborn
 ipykernel
