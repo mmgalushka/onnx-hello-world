@@ -4,6 +4,8 @@
 
 [![Project License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/mmgalushka/bootwrap/blob/main/LICENSE)
 
+> **📦 Archived:** This project is no longer maintained and has been archived. It is kept as a read-only reference. The notebooks and dependencies reflect the state of the ONNX ecosystem at the time of writing and may not work with current library versions. No further updates, bug fixes, or issue responses are planned. Feel free to fork it if you want to continue the work.
+
 This project provides educational material for [Open Neural Network Exchange (ONNX)](https://onnx.ai/). These materials would be useful for data scientists and engineers who are planning to use the ONNX models in their AI projects. Notebooks will help you to find answers to the following questions:
 
 * How to convert [SKLearn](https://scikit-learn.org/stable/), [XGBoost](https://xgboost.readthedocs.io/en/latest/), and [Tensorflow (Keras)](https://www.tensorflow.org/) classifiers into the ONNX format?
